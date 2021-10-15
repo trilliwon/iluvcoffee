@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
+import { CommonModule } from './common/common.module';
 import * as Joi from 'joi';
 import appConfig from './config/app.config';
 
@@ -26,7 +27,7 @@ import appConfig from './config/app.config';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: process.env.NODE_ENV === 'development',
-    }), CoffeeRatingModule],
+    }), CoffeeRatingModule, CommonModule],
   controllers: [AppController],
   providers: [AppService],
 })
