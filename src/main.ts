@@ -20,16 +20,19 @@ async function bootstrap() {
   );
 
   const options = new DocumentBuilder()
-  .setTitle('Iluvcoffee')
-  .setDescription('Coffee application')
-  .setVersion('1.0')
-  .build()
+    .setTitle('Iluvcoffee')
+    .setDescription('Coffee application')
+    .setVersion('1.0')
+    .build();
 
-  const document = SwaggerModule.createDocument(app, options);   
+  const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
   app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalInterceptors(new WrapResponseInterceptor(), new TimeoutInterceptorInterceptor());
+  app.useGlobalInterceptors(
+    // new WrapResponseInterceptor(),
+    new TimeoutInterceptorInterceptor(),
+  );
   await app.listen(3000);
 }
 bootstrap();

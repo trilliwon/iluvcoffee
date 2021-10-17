@@ -15,10 +15,11 @@ import appConfig from './config/app.config';
       load: [appConfig],
       validationSchema: Joi.object({
         DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().default(5432)
-      })
+        DATABASE_PORT: Joi.number().default(5432),
+      }),
     }),
-    CoffeesModule, TypeOrmModule.forRoot({
+    CoffeesModule,
+    TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: +process.env.DATABASE_PORT,
@@ -27,8 +28,11 @@ import appConfig from './config/app.config';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: process.env.NODE_ENV === 'development',
-    }), CoffeeRatingModule, CommonModule],
+    }),
+    CoffeeRatingModule,
+    CommonModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
